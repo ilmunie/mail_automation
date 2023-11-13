@@ -42,6 +42,5 @@
         <field name="res_model">mail.automation.config</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_mail_automation_config" name="Mail Automation Config" parent="base.menu_config" action="action_mail_automation_config"/>
-
+    <menuitem id="menu_mail_automation_config" name="Mail Automation Config" parent="base.menu_automation" action="action_mail_automation_config"/>
 </odoo>
