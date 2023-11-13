@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="mail_automation_lead_view_form" model="ir.ui.view">
+        <field name="name">mail.automation.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="priority">1</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[last()]" position="inside">
+                <page string="Mail automation" groups="base.group_no_one">
+                    <field name="mail_automation_history_ids">
+                        <tree>
+                            <field name="config_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

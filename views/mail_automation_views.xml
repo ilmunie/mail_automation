@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_mail_automation_config_form" model="ir.ui.view">
+        <field name="name">mail.automation.config.form</field>
+        <field name="model">mail.automation.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="model_id"/>
+                    <field name="model_name" invisible="1"/>
+                    <field name="domain_to_check" widget="domain" options="{'model': 'model_name', 'in_dialog': true}"/>
+                    <field name="repeat"/>
+                    <field name="waiting_days_since_last_mail" attrs="{'invisible': [('repeat','!=',True)]}"/>
+                    <field name="template_id"/>
+                    <field name="activated"/>
+                    <field name="write_data"/>
+                </group>
+                <field name="log_history_ids" widget="one2many_list" options="{'editable': false}">
+                    <tree>
+                        <field name="create_date"/>
+                        <field name="text" widget="html"/>
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+    <record id="view_mail_automation_config_tree" model="ir.ui.view">
+        <field name="name">mail.automation.config.tree</field>
+        <field name="model">mail.automation.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="template_id"/>
+                <field name="activated"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_mail_automation_config" model="ir.actions.act_window">
+        <field name="name">Mail Automation Config</field>
+        <field name="res_model">mail.automation.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_mail_automation_config" name="Mail Automation Config" parent="base.menu_config" action="action_mail_automation_config"/>
+
+</odoo>

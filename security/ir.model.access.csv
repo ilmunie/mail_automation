@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_automation_config,mail_automation.mail_automation_config,model_mail_automation_config,base.group_user,1,1,1,1
+access_mail_automation_log,mail_automation.mail_automation_log,model_mail_automation_log,base.group_user,1,1,1,1
+access_mail_automation_history,mail_automation.mail_automation_history,model_mail_automation_history,base.group_user,1,1,1,1
+
+
+
