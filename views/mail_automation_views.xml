@@ -6,18 +6,33 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="name"/>
-                    <field name="model_id"/>
-                    <field name="model_name" invisible="1"/>
-                    <field name="domain_to_check" widget="domain" options="{'model': 'model_name', 'in_dialog': true}"/>
-                    <field name="repeat"/>
-                    <field name="waiting_days_since_last_mail" attrs="{'invisible': [('repeat','!=',True)]}"/>
-                    <field name="template_id"/>
-                    <field name="activated"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_id"/>
+                        <field name="model_name" invisible="1"/>
+                        <field name="domain_to_check" widget="domain" options="{'model': 'model_name', 'in_dialog': true}"/>
+                    </group>
+                    <group>
+                        <field name="activated"/>
+                        <field name="repeat"/>
+                        <field name="waiting_days_since_last_mail" attrs="{'invisible': [('repeat','!=',True)]}"/>
+                        <field name="max_number_of_mails" attrs="{'invisible': [('repeat','!=',True)]}"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="template_id" domain="[('model_id','=',model_id)]"/>
+                    </group>
+                    <group>
+                        <field name="model_user_fields_id" domain="[('model_id','=',model_id),('relation','=','res.users')]"/>
+                        <field name="user_if_not_found_id"/>
+                    </group>
+                </group>
+                <group>
                     <field name="write_data"/>
                 </group>
-                <field name="log_history_ids" widget="one2many_list" options="{'editable': false}">
-                    <tree>
+                <field name="log_history_ids" widget="one2many_list" options="{'editable': False}">
+                    <tree create="0">
                         <field name="create_date"/>
                         <field name="text" widget="html"/>
                     </tree>
