@@ -1,6 +1,6 @@
 from odoo import fields, models, _, api
 from odoo.tools.safe_eval import safe_eval
-
+import datetime
 
 class MailAutomationConfig(models.Model):
     _name = "mail.automation.config"
