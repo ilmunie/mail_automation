@@ -33,6 +33,8 @@ class MailAutomationConfig(models.Model):
                         if matching_record.mail_automation_history_ids and (fields.Date.context_today(self) - max(matching_record.mail_automation_history_ids.mapped('date'))).days < automation_config.waiting_days_since_last_mail:
                             matching_record_link += " | ESPERANDO REENVIO"
                             sending_condition = False
+                if sending_condition and automation_config.additional_python_condition_function:
+                    sending_condition = eval(automation_config.additional_python_condition_function)
                 if sending_condition:
                     matching_record.send_mail_automation(automation_config)
                     matching_record_link += " | ENVIO LANZADO"
@@ -61,7 +63,7 @@ class MailAutomationConfig(models.Model):
     activated = fields.Boolean(default=True)
     log_history_ids = fields.One2many('mail.automation.log', 'config_id')
     write_data = fields.Char()
-
+    additional_python_condition_function = fields.Text()
 
 
 class MailAutomationLog(models.Model):
