@@ -98,6 +98,11 @@ class MailAutomationMixin(models.AbstractModel):
             kwargs = {}
             if partner_id:
                 kwargs = {'partner_ids': [(6, 0, self.partner_id.mapped('id'))]}
+            else:
+                if self._name == 'crm.lead':
+                    new_partner_id = self._create_customer()
+                    kwargs = {'partner_ids': [(6, 0, new_partner_id.mapped('id'))]}
+                    self.partner_id = new_partner_id.id
             self.with_context(force_send=True).with_user(user).message_post_with_template(template.id,
                                                                           email_layout_xmlid='mail.mail_notification_light', **kwargs)
         if config_id.write_data:
