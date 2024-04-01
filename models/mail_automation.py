@@ -94,8 +94,12 @@ class MailAutomationMixin(models.AbstractModel):
         if not user:
             user = config_id.user_if_not_found_id or self.env.user
         for template in config_id.template_id:
+            partner_id = self.partner_id
+            kwargs = {}
+            if partner_id:
+                kwargs = {'partner_ids': [(6, 0, self.partner_id.mapped('id'))]}
             self.with_context(force_send=True).with_user(user).message_post_with_template(template.id,
-                                                                          email_layout_xmlid='mail.mail_notification_light')
+                                                                          email_layout_xmlid='mail.mail_notification_light', **kwargs)
         if config_id.write_data:
             vals_to_write = safe_eval(config_id.write_data)
         else:
