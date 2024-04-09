@@ -85,7 +85,7 @@ class MailAutomationHistory(models.Model):
 class MailAutomationMixin(models.AbstractModel):
     _name = 'mail.automation.mixing'
 
-    mail_automation_history_ids = fields.Many2many(comodel_name='mail.automation.history')
+    mail_automation_history_ids = fields.Many2many(comodel_name='mail.automation.history', copy=False)
 
     def send_mail_automation(self, config_id):
         user = False

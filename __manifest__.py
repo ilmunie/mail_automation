@@ -15,6 +15,7 @@
     'data': [
         'data/ir_cron_data.xml',
         'views/mail_automation_views.xml',
+        'views/crm_lead_view.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,

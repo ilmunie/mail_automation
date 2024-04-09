@@ -17,5 +17,17 @@
             </xpath>
         </field>
     </record>
+    <record id="mail_automation_lead_view_search" model="ir.ui.view">
+        <field name="name">mail.automation.lead.search</field>
+        <field name="model">crm.lead</field>
+        <field name="priority">1</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[last()]" position="after">
+                <separator/>
+                <filter string="Automatización Mails" name="mail_automation" domain="[('mail_automation_history_ids', '!=', False)]"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
 
