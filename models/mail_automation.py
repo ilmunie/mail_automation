@@ -122,3 +122,14 @@ class MailAutomationMixin(models.AbstractModel):
 class CrmLead(models.Model, MailAutomationMixin):
     _inherit = 'crm.lead'
 
+class MailActivity(models.Model, MailAutomationMixin):
+    _inherit = 'mail.activity'
+
+    partner_id = fields.Many2one(related='user_id.partner_id')
+
+
+
+
+class MailActivity(models.Model):
+    _name = 'mail.activity'
+    _inherit = ['mail.activity', 'mail.thread', 'mail.automation.mixing']
