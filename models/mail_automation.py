@@ -40,11 +40,11 @@ class MailAutomationConfig(models.Model):
                     matching_record_link += " | ENVIO LANZADO"
                 matching_record_link += "</a></td></tr>"
                 log_vector.append(matching_record_link)
-                automation_log = {
-                    'text': '\n'.join(log_vector),
-                    'config_id': automation_config.id,
-                }
-                self.env['mail.automation.log'].create(automation_log)
+            automation_log = {
+                'text': '\n'.join(log_vector),
+                'config_id': automation_config.id,
+            }
+            self.env['mail.automation.log'].create(automation_log)
 
 
 
