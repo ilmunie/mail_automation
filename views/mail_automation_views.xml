@@ -15,6 +15,7 @@
                     </group>
                     <group>
                         <field name="activated"/>
+                        <field name="notify_followers"/>
                         <field name="repeat"/>
                         <field name="waiting_days_since_last_mail" attrs="{'invisible': [('repeat','!=',True)]}"/>
                         <field name="max_number_of_mails" attrs="{'invisible': [('repeat','!=',True)]}"/>
